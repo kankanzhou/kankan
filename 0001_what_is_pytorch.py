@@ -85,6 +85,12 @@ np.add(a, 1, out=a)
 print(a)
 print(b)
 
+## To check how many CUDA supported GPU’s are connected to the machine
+print(torch.cuda.device_count())
+
+## get the name of the GPU Card connected to the machine
+print(torch.cuda.get_device_name(0))
+
 ## CUDA Tensors
 # let us run this cell only if CUDA is available
 # We will use ``torch.device`` objects to move tensors in and out of GPU
@@ -95,3 +101,5 @@ if torch.cuda.is_available():
     z = x + y
     print(z)
     print(z.to("cpu", torch.double))       # ``.to`` can also change dtype together!
+
+
