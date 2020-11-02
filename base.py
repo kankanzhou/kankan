@@ -14,17 +14,17 @@ if torch.cuda.is_available():
     print("GPU Index: ",torch.cuda.current_device())
 
 #######
-BATCH_SIZE = 128
-min_freq = 3
+BATCH_SIZE = 256
+min_freq = 4
 train_iterator, valid_iterator, test_iterator,SRC = preprocess.prcoess(BATCH_SIZE,device,min_freq)
 INPUT_DIM = len(SRC.vocab)
 OUTPUT_DIM = INPUT_DIM
-ENC_EMB_DIM = 128
-DEC_EMB_DIM = 128
-HID_DIM = 256
+ENC_EMB_DIM = 256
+DEC_EMB_DIM = 256
+HID_DIM = 512
 N_LAYERS = 2
-ENC_DROPOUT = 0.2
-DEC_DROPOUT = 0.2
+ENC_DROPOUT = 0.5
+DEC_DROPOUT = 0.5
 N_EPOCHS = 10
 CLIP = 1
 #######
