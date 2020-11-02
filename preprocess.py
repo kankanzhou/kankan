@@ -18,7 +18,7 @@ nlp = spacy.load('en')
 
 def tokenize_en(text):
 
-    return [tok.text for tok in nlp.tokenizer(text) if not tok.is_stop and not tok.is_punct]
+    return [tok.text for tok in nlp.tokenizer(text) if not tok.is_punct]
 
 def prcoess(BATCH_SIZE , device,min_freq):
 
