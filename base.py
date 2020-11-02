@@ -14,20 +14,20 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 if torch.cuda.is_available():
     print("GPU Index: ",torch.cuda.current_device())
 
-BATCH_SIZE = 64
-
+#######
+BATCH_SIZE = 128
 train_iterator, valid_iterator, test_iterator,SRC,TRG = preprocess.prcoess(BATCH_SIZE,device)
-
 INPUT_DIM = len(SRC.vocab)
 OUTPUT_DIM = len(TRG.vocab)
-ENC_EMB_DIM = 128
-DEC_EMB_DIM = 128
-HID_DIM = 256
-N_LAYERS = 1
+ENC_EMB_DIM = 256
+DEC_EMB_DIM = 256
+HID_DIM = 512
+N_LAYERS = 2
 ENC_DROPOUT = 0.5
 DEC_DROPOUT = 0.5
-N_EPOCHS = 1
+N_EPOCHS = 10
 CLIP = 1
+#######
 
 enc = c_model.Encoder(INPUT_DIM, ENC_EMB_DIM, HID_DIM, N_LAYERS, ENC_DROPOUT)
 dec = c_model.Decoder(OUTPUT_DIM, DEC_EMB_DIM, HID_DIM, N_LAYERS, DEC_DROPOUT)
@@ -37,7 +37,6 @@ model.apply(c_model.init_weights)
 optimizer = optim.Adam(model.parameters())
 PAD_IDX = TRG.vocab.stoi['<pad>']
 criterion = nn.CrossEntropyLoss(ignore_index = PAD_IDX)
-
 
 
 best_valid_loss = float('inf')
