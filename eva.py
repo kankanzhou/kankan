@@ -14,7 +14,7 @@ if torch.cuda.is_available():
     print("GPU Index: ",torch.cuda.current_device())
 
 ###############
-BATCH_SIZE = 64
+BATCH_SIZE = 256
 train_iterator, valid_iterator, test_iterator,SRC,TRG = preprocess.prcoess(BATCH_SIZE,device)
 INPUT_DIM = len(SRC.vocab)
 OUTPUT_DIM = len(TRG.vocab)
@@ -22,9 +22,9 @@ ENC_EMB_DIM = 128
 DEC_EMB_DIM = 128
 HID_DIM = 256
 N_LAYERS = 1
-ENC_DROPOUT = 0.5
-DEC_DROPOUT = 0.5
-N_EPOCHS = 1
+ENC_DROPOUT = 0.2
+DEC_DROPOUT = 0.2
+N_EPOCHS = 10
 CLIP = 1
 ###############
 
@@ -40,7 +40,7 @@ while (post != "quit"):
     post = input("User: ")
     model.eval() 
 
-    tokenized = preprocess.tokenize_src(post) 
+    tokenized = preprocess.tokenize_en(post) 
     tokenized = ['<sos>'] + [t.lower() for t in tokenized] + ['<eos>']
     numericalized = [SRC.vocab.stoi[t] for t in tokenized]
     sentence_length = torch.LongTensor([len(numericalized)]).to(device)

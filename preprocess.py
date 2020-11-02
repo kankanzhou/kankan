@@ -17,27 +17,22 @@ from torchtext.data import TabularDataset
 
 nlp = spacy.load('en')
 
-def tokenize_tgt(text):
+def tokenize_en(text):
     """
     Tokenizes post text from a string into a list of strings (tokens) 
     """
     return [tok.text for tok in nlp.tokenizer(text)]
 
-def tokenize_src(text):
-    """
-    Tokenizes response text from a string into a list of strings (tokens)
-    """
-    return [tok.text for tok in nlp.tokenizer(text)]
 
 def prcoess(BATCH_SIZE , device):
 
 
-    SRC = Field(tokenize = tokenize_src, 
+    SRC = Field(tokenize = tokenize_en, 
                 init_token = '<sos>', 
                 eos_token = '<eos>', 
                 lower = True)
 
-    TRG = Field(tokenize = tokenize_tgt, 
+    TRG = Field(tokenize = tokenize_en, 
                 init_token = '<sos>', 
                 eos_token = '<eos>', 
                 lower = True)
