@@ -33,7 +33,7 @@ def prcoess(BATCH_SIZE , device,min_freq):
 
     train_data, valid_data , test_data= TabularDataset.splits(
                 path="./data", # the root directory where the data lies
-                train='train.csv', validation="valid.csv", test = "test.csv" ,
+                train='train_f.csv', validation="valid_f.csv", test = "test_f.csv" ,
                 format='csv',
                 skip_header=False, # if your csv header has a header, make sure to pass this to ensure it doesn't get proceesed as data!
                 fields=tv_datafields)
